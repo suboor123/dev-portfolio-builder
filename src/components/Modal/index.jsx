@@ -7,7 +7,7 @@ const Popup = ({ show, handleClose, heading, children, size="md", description })
       <Modal.Header>
         <Modal.Title>
         <h5>{heading}</h5>
-        <p>{description}</p>
+        <p className="font-italic" style={{fontSize: '13px'}}>{description}</p>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>{children}</Modal.Body>
