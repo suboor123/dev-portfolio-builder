@@ -1,8 +1,9 @@
 import React from 'react'
+import Panel from '../../components/Panel'
 
 const Blog = () => {
   return (
-    <div>Blog</div>
+    <Panel heading="Blogs"> </Panel>
   )
 }
 

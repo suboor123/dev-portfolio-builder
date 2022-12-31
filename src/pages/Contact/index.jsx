@@ -1,8 +1,9 @@
 import React from 'react'
+import Panel from '../../components/Panel'
 
 const Contact = () => {
   return (
-    <div>Contact</div>
+    <Panel heading="Contact Me"> </Panel>
   )
 }
 
