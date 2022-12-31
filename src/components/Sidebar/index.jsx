@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({user}) => {
   return (
     <header className="site-header bg-primary">
       <div className="header-inner">
         <div className="header-brand">
           {/* Logo */}
           <a href="home-1-light-background.html#" className="logo">
-            <span>Amanda Malat</span>
-            <span className="title-letter">A</span>
+            <span>{user.username}</span>
+            <span className="title-letter">{user.username[0]}</span>
           </a>
         </div>
         <div className="nav-divider mb-8" />
@@ -18,11 +18,6 @@ const Sidebar = () => {
             <li>
               <Link to={"/"} className="scrollto">
                 Home
-              </Link>
-            </li>
-            <li>
-              <Link to={"/about"} className="scrollto">
-                About
               </Link>
             </li>
             <li>

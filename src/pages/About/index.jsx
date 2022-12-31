@@ -1,7 +1,7 @@
 import React from 'react'
 import Panel from '../../components/Panel'
 
-const About = () => {
+const About = ({user}) => {
   return (
     <Panel heading="About Me"> </Panel>
   )

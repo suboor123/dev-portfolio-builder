@@ -41,11 +41,11 @@ function App() {
       <BrowserRouter>
         {user && (
           <>
-            <Sidebar />
+            <Sidebar user={user} />
             <Main>
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
+                <Route path="/" element={<Home user={user} />} />
+                <Route path="/about" element={<About user={user} />} />
                 <Route path="/portfolio" element={<Portfolio />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/contact" element={<Contact />} />
