@@ -1,0 +1,10 @@
+.card-container a {
+    text-decoration: none !important;
+    color: #212529 !important;
+}
+
+
+.card-container a:hover {
+    text-decoration: none !important;
+    color: #212529 !important;
+}

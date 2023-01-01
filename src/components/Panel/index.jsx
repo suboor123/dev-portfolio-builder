@@ -6,8 +6,8 @@ const Panel = ({ children, heading }) => {
       <div class="section-title h2 text-center mb-8">
         <h2 class="mb-0">{heading}</h2>
         <span class="title-letter">{heading[0]}</span>
-        {children}
       </div>
+      {children}
     </div>
   );
 };

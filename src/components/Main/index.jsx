@@ -4,7 +4,7 @@ const Main = ({ children }) => {
   return (
     <div className="page-wrapper">
       <div className="page-content">
-        <section>
+        <section id="about">
             {children}
         </section>
       </div>

@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { UserModel } from "../../API/user-model";
 import AdminButton from "../../components/AdminButton";
 import Popup from "../../components/Modal";
+import Panel from "../../components/Panel";
 import { GlobalConstants } from "../../constants";
+import LoadingSpinner from "../../lib/loadingSpinner";
+import { toastr } from "../../lib/toastr";
+import Skills from "./Skills";
 
 const Home = ({ user, refreshUser }) => {
   const [showProfilePicModal, setShowProfilePicModal] = useState(false);
@@ -15,29 +19,47 @@ const Home = ({ user, refreshUser }) => {
 
   const handleUpload = async () => {
     if (!imageFile) return;
+    LoadingSpinner.show()
     await UserModel.setUserProfilePicture(imageFile, () => {
       refreshUser();
       setShowProfilePicModal(false);
+      LoadingSpinner.hide();
+      toastr.success('Uplaoded successfully!', 'You have changed your profile picture successfully.')
     });
   };
 
   return (
-    <div className="container align-self-center text-center">
-      <div className="avatar avatar-xxl mb-6">
-        <div className="avatar-shape avatar-shape-rounded bg-white mt-n2 mb-n2 mr-n2" />
-        <img
-          src={user.imageUrl || GlobalConstants.profilePicture}
-          alt
-          className="avatar-img rounded-circle shadow-light"
-        />
+    <Panel heading="About Me">
+      <div className="row">
+        <div className="col-md-6 col-lg-4 d-none d-lg-block">
+          <img
+            className="img-fluid w-100 rounded"
+            style={{height: '350px', objectFit: 'cover'}}
+            src={user.imageUrl || GlobalConstants.profilePicture}
+            alt
+          />
+          <AdminButton className="w-100" onClick={() => setShowProfilePicModal(true)}>
+            Upload Image
+          </AdminButton>
+        </div>
+        <div className="col-lg-8">
+          <h3>{user.username}</h3>
+          <p className="lead">{user.designation}</p>
+          <p className="mb-5">{user.aboutMe}</p>
+          <Skills />
+        <hr/>
+
+        <a href="./resume.pdf" className="btn btn-primary">
+            Download CV
+          </a>
+          <a
+            href="home-1-light-background.html#contact"
+            className="btn btn-light scrollto"
+          >
+            Send Message
+          </a>
+        </div>
       </div>
-      <br />
-      <AdminButton onClick={() => setShowProfilePicModal(true)}>
-        Change Profile
-      </AdminButton>
-      <h1 className="mb-2 mb-lg-3">{user.username}</h1>
-      <p className="lead mb-0">{user.designation}</p>
-      <span className="cover-letter letter-xl text-dark opacity-5">A</span>
       <Popup
         show={showProfilePicModal}
         heading="Profile Picture"
@@ -54,8 +76,9 @@ const Home = ({ user, refreshUser }) => {
           <AdminButton onClick={handleUpload}>Upload</AdminButton>
         </div>
       </Popup>
-    </div>
+    </Panel>
   );
+
 };
 
 export default Home;

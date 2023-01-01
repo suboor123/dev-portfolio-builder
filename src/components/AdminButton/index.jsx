@@ -6,13 +6,14 @@ const AdminButton = ({
   onClick,
   className = "",
   appeareance = "primary",
+  size="md"
 }) => {
   const isAdmin = localStorage.getItem("secret") === "suboor@123";
   if (isAdmin) {
     return (
-      <Button onClick={onClick} className={className} appeareance={appeareance}>
-        {children}
-      </Button>
+      <button className={`btn btn-${appeareance} btn-${size} ${className}`} onClick={onClick}>
+      {children}
+    </button>
     );
   }
 

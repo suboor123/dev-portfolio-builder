@@ -2,6 +2,7 @@ import { child, get, ref, set } from "firebase/database";
 import { getDownloadURL, uploadBytes, uploadBytesResumable } from "firebase/storage";
 import { firebaseDatabase, firebaseStorage } from "../firebase-config";
 import { ref as sRef } from 'firebase/storage';
+import {makeRandomNumber} from './random-id-generator'
 
 export const UserModel = {
   /**
@@ -25,7 +26,7 @@ export const UserModel = {
   },
 
   async setUserProfilePicture(imageFile, callback) {
-    const storageRef = sRef(firebaseStorage, `${this.path}/${new Date().getDate() + new Date().getMilliseconds()}.jpg`);
+    const storageRef = sRef(firebaseStorage, `${this.path}/${makeRandomNumber()}.jpg`);
     const uploadTask = uploadBytesResumable(storageRef, imageFile);
     uploadTask.on('state_changed', 
       (snapshot) => {}, 
@@ -37,6 +38,10 @@ export const UserModel = {
         });
       }
     );
+  },
+
+  get isAdmin() {
+    return localStorage.getItem("secret") === "suboor@123";
   }
 };
 

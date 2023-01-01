@@ -1,0 +1,13 @@
+.card-img {
+    height: 250px;
+    object-fit: cover;
+}
+
+.desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 100px;
+    max-height: 100px;
+}

@@ -12,6 +12,7 @@ import { UserModel } from "./API/user-model";
 import Popup from "./components/Modal";
 import UserForm from "./components/UserForm";
 import "rsuite/dist/rsuite.min.css";
+import ProjectDetail from "./pages/Portfolio/project-detail";
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
                 <Route path="/"  element={<Home refreshUser={fetchUser} user={user} />} />
                 <Route path="/about" element={<About user={user} />} />
                 <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/portfolio/:id" element={<ProjectDetail user={user} />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/contact" element={<Contact />} />
               </Routes>
